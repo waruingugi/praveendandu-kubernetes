@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webapp-ingress   # Name of the ingress
+spec:
+  rules:
+    # Host field specifies the domain name under which the web application will be
+    # accessible from outside the cluster. (Replace with your domain or IP)
+    - host: mywebapp.example.com
+      http:
+        # Defines the routing rules
+        paths:
+            # Incoming requests with a prefix of / will be forwarded to webapp-service
+          - path: /
+            pathType: Prefix
+            # Specifies the target service to which the traffic should be forwarded.
+            # In this case, it's the webapp-service we defined earlier.
+            backend:
+              service:
+                name: webapp-service
+                port:
+                  number: 80

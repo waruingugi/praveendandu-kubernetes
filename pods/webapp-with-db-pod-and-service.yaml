@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-service  # Name of the service
+spec:
+  selector:
+    app: my-webapp  # Select pods with this label
+  ports:
+    - protocol: TCP
+      port: 80  # Service exposes port 80 which matches the port exposed by the webapp container
+      targetPort: 80  # Specifies the port on the pod that the service forwards traffic to.
+      # In this case, it matches the containerPort of the webapp container.
